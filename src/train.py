@@ -283,7 +283,7 @@ def main():
             sample_y2_ = sample_y2_.cuda()
 
         sample_vars_conti = (sample_z2_, sample_c2_, sample_y2_)
-        fname = 'sample_contis_disc_{}_{}.png'.format(disc_code_idx, iter_num + 1)
+        fname = 'sample_contis_disc_{}_{}.png'.format(disc_code_idx, iter_num)
         visualize_results(G,
                                     sample_num=sample_num_conti,
                                     sample_vars=sample_vars_conti,
