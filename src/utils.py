@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 def plot_loss(iter_list, g_loss_list, d_loss_list,
-                 save_dir_path, fname):
+              save_dir_path, fname):
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(iter_list, g_loss_list, label='Generator')
@@ -19,7 +19,7 @@ def plot_loss(iter_list, g_loss_list, d_loss_list,
 
 
 def visualize_results(generator, sample_num, sample_vars,
-                                  save_dir, save_file_name):
+                      save_dir, save_file_name):
     generator.eval()
 
     if not os.path.exists(save_dir):
@@ -47,8 +47,8 @@ def visualize_results(generator, sample_num, sample_vars,
 def save_images(images, size, image_path):
     image = np.squeeze(merge(images, size))
     plt.tick_params(labelbottom=False, labelleft=False,
-                              labelright=False,labeltop=False,
-                              bottom=False, left=False, right=False,top=False)
+                    labelright=False,labeltop=False,
+                    bottom=False, left=False, right=False,top=False)
     plt.imshow(image, cmap='gray')
     plt.savefig(image_path, bbox_inches='tight')
     plt.close()
@@ -75,5 +75,5 @@ def merge(images, size):
     
     else:
         raise ValueError('in merge(images, size) images parameter'
-                                   'must have dimensions (h, w), (h, w, 3) or (h, w, 4).')
+                         'must have dimensions (h, w), (h, w, 3) or (h, w, 4).')
 

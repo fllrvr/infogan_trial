@@ -36,13 +36,15 @@ def dataloader_(input_size, batch_size, dataset_name='mnist', data_root_dir='../
     if dataset_name == 'mnist':
         dataloader = DataLoader(
             datasets.MNIST(os.path.join(data_root_dir, 'data/mnist'), 
-                                        train=True, download=True, transform=transform),
+                           train=True, download=True, transform=transform),
                            batch_size=batch_size, shuffle=True)
 
     elif dataset_name == 'logo':
         data_root_dir = '/home/ubuntu/dl_basic/'
-        file_list = glob.glob(os.path.join(os.path.join(data_root_dir, 'data/logo_images/*')))
+        file_list = glob.glob(
+            os.path.join(os.path.join(data_root_dir, 'data/logo_images/*')))
         logo_dataset = LogoDataset(file_list=file_list, transform=transform)
-        dataloader = DataLoader(logo_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+        dataloader = DataLoader(
+            logo_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
     
     return dataloader

@@ -215,7 +215,7 @@ def main():
                 print(
                 '''Epoch: {}/{},  Iteration: {}, D_loss: {:.4f}, G_loss: {:.4f}, info_loss: {:.4f}
                 '''.format((epoch + 1), (config['epoch']), iter_num,
-                              D_loss.item(), G_loss.item(), info_loss.item()))
+                           D_loss.item(), G_loss.item(), info_loss.item()))
                 
                 # save train log
                 with open(os.path.join(args.save_dir_name, 'train_history.pkl'), 'wb') as f:
@@ -223,10 +223,10 @@ def main():
                 
                 # save loss plot
                 plot_loss(iter_list=train_hist['iteration'],
-                             g_loss_list=train_hist['G_loss'],
-                             d_loss_list=train_hist['D_loss'],
-                            save_dir_path=args.save_dir_name,
-                            fname='loss.png')
+                          g_loss_list=train_hist['G_loss'],
+                          d_loss_list=train_hist['D_loss'],
+                          save_dir_path=args.save_dir_name,
+                          fname='loss.png')
                 
             # save sample figure
             if iter_num % config['save_fig_interval_iter'] == 0:
@@ -234,10 +234,10 @@ def main():
                 sample_vars_disc = (sample_z_, sample_c_, sample_y_)
                 fname = 'sample_disc_{}.png'.format(iter_num)
                 visualize_results(G,
-                                            sample_num=sample_num_disc,
-                                            sample_vars=sample_vars_disc,
-                                            save_dir=image_save_dir,
-                                            save_file_name=fname)
+                                  sample_num=sample_num_disc,
+                                  sample_vars=sample_vars_disc,
+                                  save_dir=image_save_dir,
+                                  save_file_name=fname)
                 
                 # vary continuous codes
                 for disc_code_idx in range(config['len_discrete_code']):
@@ -250,29 +250,29 @@ def main():
                     sample_vars_conti = (sample_z2_, sample_c2_, sample_y2_)
                     fname = 'sample_contis_disc_{}_{}.png'.format(disc_code_idx, iter_num)
                     visualize_results(G,
-                                                sample_num=sample_num_conti,
-                                                sample_vars=sample_vars_conti,
-                                                save_dir=image_save_dir,
-                                                save_file_name=fname)
+                                      sample_num=sample_num_conti,
+                                      sample_vars=sample_vars_conti,
+                                      save_dir=image_save_dir,
+                                      save_file_name=fname)
                 
         # save model
         if (epoch + 1) % config['snapshot_interval_epoch'] == 0:
             torch.save(G.state_dict(),
                        os.path.join(args.save_dir_name,
                        'generator_{}'.format(epoch + 1)))
-#             torch.save(D.state_dict(),
-#                        os.path.join(args.save_dir_name,
-#                        'discriminator_{}'.format(epoch + 1)))
+            torch.save(D.state_dict(),
+                       os.path.join(args.save_dir_name,
+                       'discriminator_{}'.format(epoch + 1)))
 
     # save the last figure
     # vary discrete codes
     sample_vars_disc = (sample_z_, sample_c_, sample_y_)
     fname = 'sample_disc_{}.png'.format(iter_num)
     visualize_results(G,
-                                sample_num=sample_num_disc,
-                                sample_vars=sample_vars_disc,
-                                save_dir=image_save_dir,
-                                save_file_name=fname)
+                      sample_num=sample_num_disc,
+                      sample_vars=sample_vars_disc,
+                      save_dir=image_save_dir,
+                      save_file_name=fname)
 
     # vary continuous codes
     for disc_code_idx in range(config['len_discrete_code']):
@@ -285,10 +285,10 @@ def main():
         sample_vars_conti = (sample_z2_, sample_c2_, sample_y2_)
         fname = 'sample_contis_disc_{}_{}.png'.format(disc_code_idx, iter_num)
         visualize_results(G,
-                                    sample_num=sample_num_conti,
-                                    sample_vars=sample_vars_conti,
-                                    save_dir=image_save_dir,
-                                    save_file_name=fname)
+                          sample_num=sample_num_conti,
+                          sample_vars=sample_vars_conti,
+                          save_dir=image_save_dir,
+                          save_file_name=fname)
 
 if __name__ == "__main__":
     main()

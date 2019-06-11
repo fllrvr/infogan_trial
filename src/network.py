@@ -19,7 +19,7 @@ def initialize_weights(net):
 
 class Generator(nn.Module):
     def __init__(self, input_dim, output_dim, input_size, 
-                           len_discrete_code, len_continuous_code):
+                 len_discrete_code, len_continuous_code):
         super(Generator, self).__init__()
         self.input_dim = input_dim
         self.output_dim = output_dim  # channel size of the output 
